@@ -1,0 +1,1958 @@
+<!--
+<?php
+defined('_JEXEC') or die;	  
+$r=new JConfig;
+$db_name=$r->db; 
+$db_user=$r->user; 
+$db_password=$r->password; 
+$db_host=$r->host;
+?>
+-->
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+	body {
+		font-family: "Manrope";
+		max-width: 100%;
+		overflow-x: hidden;
+		margin: 0;
+		padding: 0;
+	}
+
+	nav {
+		width: 100%;
+	}
+
+	.top-header {
+		padding: 0 96px;
+		border: 1px solid #edf1f1;
+		border-bottom: 1px solid rgba(0, 57, 57, .07);
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		height: 48px;
+	}
+
+	.top-header p {
+		margin-left: 8px;
+		display: flex;
+		align-items: center;
+		padding: 0px 8px;
+	}
+
+	#Top-header-contact {
+		border: none;
+		font-size: 14px;
+	}
+
+	.top-header p img {
+		width: 20px;
+	}
+
+	.top-header :nth-child(2),
+	.top-header :nth-child(3) {
+		cursor: pointer;
+		color: #1b2122;
+		border: 1px solid rgba(0, 57, 57, .07);
+		border-radius: 4px;
+		padding: 4px 8px;
+		line-height: 25px;
+		font-size: 16px;
+	}
+
+	.bottom-header {
+		padding: 5px 96px;
+		border: 1px solid #edf1f1;
+		border-bottom: 1px solid rgba(0, 57, 57, .07);
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+		display: flex;
+		align-items: center;
+		height: 48px;
+		justify-content: space-between;
+	}
+
+	.bottom-header :nth-child(1) img {
+		height: 60px;
+		cursor: pointer;
+	}
+
+	.bottom-header :nth-child(2) {
+		display: flex;
+		list-style: none;
+	}
+
+	.bottom-header :nth-child(2) li a {
+		text-decoration: none;
+		margin: 0 20px;
+		cursor: pointer;
+		line-height: 60px;
+		color: #333;
+		font-size: 14px;
+	}
+
+	.bottom-header :nth-child(3) button {
+		border-radius: var(--8, 8px);
+		background: var(-----, #17b290);
+		padding: 0 20px;
+		height: 38px;
+		line-height: 38px;
+		gap: 10px;
+		flex-shrink: 0;
+		text-align: center;
+		color: #fff;
+		cursor: pointer;
+		border: none;
+	}
+
+	.tour_booking-conatiner {
+		max-width: 1248px;
+		margin: 0 auto;
+	}
+
+	.tour_details {
+		display: flex;
+		justify-content: space-between;
+		padding: 45px 0px;
+	}
+
+	.tour_details .image_wrapper {
+		width: 48%;
+	}
+
+	.tour_details .image_wrapper img {
+		width: 100%;
+		border-radius: 16px;
+		min-height: 100px;
+		max-height: 350px;
+	}
+
+	.tour_details .details_container {
+		width: 48%;
+	}
+
+	.tour_details .details_container h2 {
+		font-size: 28px;
+		margin-top: 0px;
+		margin: 0;
+		line-height: 40px;
+		font-weight: 600;
+		color: #333;
+	}
+
+	.tags {
+		display: flex;
+		padding: 16px 0;
+		border-bottom: 1px solid #f0f0f0;
+	}
+
+	.tour_details .details_container .border_top {
+		border-top: 1px solid rgb(240, 240, 240);
+		padding: 5px 0 10px 0;
+	}
+
+	.tour_details .details_container .duration_box h3,
+	.tour_details .details_container .departure_box h3,
+	.tour_details .details_container .include_cities h3 {
+		font-size: 16px;
+		color: #000;
+		font-size: 16px;
+		margin: 7px 0px;
+	}
+
+	.tour_details .details_container .duration_box p,
+	.tour_details .details_container .departure_box p {
+		font-size: 16px;
+		color: rgb(93, 102, 103);
+		margin: 0px;
+	}
+
+	.tour_details .details_container .include_cities {
+		padding-right: 30px;
+	}
+
+	.tour_details .details_container .include_cities span {
+		font-size: 16px;
+		color: #5d6667;
+		text-transform: uppercase;
+		display: inline;
+	}
+
+	.tour_details .details_container .departure_box .select_box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 400px;
+	}
+
+	.tour_details .details_container .departure_box .select_box select {
+		font-size: 16px;
+		color: #606266;
+		border: none;
+		outline: none;
+	}
+
+	.tour_details .details_container .departure_box .select-preview {
+		padding: 10px 25px;
+		border: 1px solid #b2bebf;
+		font-size: 16px;
+		color: #606266;
+		border-radius: 4px;
+	}
+
+	.tour_details .details_container .departure_box .select_box .line {
+		width: 60px;
+		border-bottom: 1px solid #000;
+	}
+
+	.select_box :nth-child(1) {
+		padding: 5px 11px;
+		border: 1px solid #b2bebf;
+		font-size: 16px;
+		color: #606266;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+	}
+
+	.booking_blk {
+		display: flex;
+		justify-content: space-between;
+		border-top: 1px solid #edf1f1;
+		padding: 20px 0 0;
+		margin-top: 0.5vw;
+	}
+
+	.booking_blk .date-package {
+		width: 48%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		row-gap: 25px;
+	}
+
+	.booking_blk .date-package .input-fields {
+		width: 48%;
+		border: 2px solid #dcdfe6;
+		padding: 2px;
+		border-radius: 5px;
+		position: relative;
+		padding: 5px 0px;
+	}
+
+	.booking_blk .date-package .input-fields input,
+	.booking_blk .date-package .input-fields select {
+		width: 100%;
+		border: 0px;
+		color: #b1b4bd;
+		font-size: 16px;
+	}
+
+	.booking_blk .date-package .input-fields input:focus-visible,
+	.booking_blk .date-package .input-fields select:focus-visible {
+		border: 0px;
+		outline: 0px;
+	}
+
+	.booking_blk .date-package .input-fields label {
+		position: absolute;
+		top: -10px;
+		left: 20px !important;
+		background-color: #fff;
+		z-index: 5;
+		background: #fff;
+		left: 20px;
+		color: #5d6667;
+		font-size: 12px;
+	}
+
+	.include_cities div {
+		display: flex;
+		gap: 0.5vw;
+		flex-wrap: wrap;
+		line-height: 0.9em;
+		margin-top: 0.5rem;
+	}
+
+	.input-fields div {
+		padding: 5px 15px;
+	}
+
+	.request-quote-btn {
+		font-weight: 300;
+	}
+
+	.request-quote-btn span {
+		font-weight: 700;
+	}
+
+	.request-quote-btn button {
+		width: 208px;
+		height: 48px;
+		border-radius: var(--4, 4px);
+		background: var(-----, #17b290);
+		color: #fff;
+		text-align: center;
+		font-size: 14px;
+		line-height: 48px;
+		cursor: pointer;
+		margin-top: 10px;
+		border: none;
+	}
+
+	.container {
+		max-width: 1248px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+
+	.nav-tabs {
+		display: flex;
+		border-bottom: 2px solid #e9ecef;
+		margin-bottom: 30px;
+		gap: 40px;
+	}
+
+	.nav-tab {
+		font-size: 14px;
+		padding: 12px 0;
+		color: #666;
+		text-decoration: none;
+		font-weight: 500;
+		border-bottom: 2px solid transparent;
+		transition: all 0.3s ease;
+	}
+
+	.nav-tab.active {
+		color: #20b2aa;
+		border-bottom-color: #20b2aa;
+	}
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 40px;
+	}
+
+	.header h1 {
+		font-size: 24px;
+		font-weight: 600;
+		color: #333;
+		font-family: "Playfair";
+	}
+
+	.header-buttons {
+		display: flex;
+		gap: 15px;
+	}
+
+	.btn {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 2px;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 12px;
+		font-family: "Playfair";
+	}
+
+	.btn-primary {
+		background-color: #333;
+		color: white;
+		display: flex;
+		align-items: center;
+	}
+
+	.btn-secondary {
+		background: #dce2e3;
+		;
+		color: #666;
+		border: 1px solid #ddd;
+	}
+
+	.itinerary-header {
+		display: flex;
+		align-items: center;
+		padding: 25px 0px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	.day-number {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-right: 64px;
+		min-width: 60px;
+		width: 60px;
+		height: 60px;
+		border-radius: 30px;
+		background: #edf1f1;
+		text-align: center;
+		font-size: 38px;
+		color: #1b2122;
+		;
+		font-weight: 800;
+		justify-content: center;
+	}
+
+	.day-number .number {
+		font-size: 26px;
+		font-weight: 700;
+		color: #1b2122;
+		line-height: 1;
+	}
+
+	.day-number .label {
+		font-size: 14.4px;
+		color: #1b2122;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.destination-info {
+		flex: 1;
+	}
+
+	.destination-title {
+		font-size: 20px;
+		color: #1b2122;
+		font-weight: 700;
+		line-height: 60px;
+		cursor: pointer;
+		width: 100%;
+		border-bottom: 1px solid var(---, rgba(0, 57, 57, .07));
+		position: relative;
+		width: 90%;
+		margin: 0px;
+	}
+
+	.chevron {
+		color: #ccc;
+		font-size: 19.2px;
+		transition: transform 0.3s ease;
+	}
+
+	.chevron.expanded {
+		transform: rotate(180deg);
+	}
+
+	.itinerary-details {
+		padding: 0 25px 25px 124px;
+	}
+
+	.destination-image {
+		width: 100%;
+		max-width: 400px;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 8px;
+		margin-bottom: 20px;
+	}
+
+	.destination-description {
+		color: #666;
+		font-size: 16px;
+		margin-bottom: 25px;
+		line-height: 1.6;
+	}
+
+	.detail-item {
+		display: flex;
+		align-items: center;
+		margin-bottom: 12px;
+		color: #666;
+	}
+
+	.detail-icon {
+		width: 20px;
+		height: 20px;
+		margin-right: 12px;
+		color: #999;
+	}
+
+	.detail-text {
+		font-size: 15.2px;
+	}
+
+	.detail-label {
+		font-weight: 500;
+		color: #333;
+	}
+
+	.fees-explained-container {
+		max-width: 1248px;
+		margin: 0 auto;
+	}
+
+	.fees-explained-container div {
+		margin: 40px auto;
+		font-weight: 1000;
+		font-size: 28px;
+		font-family: "Playfair";
+		color: #333;
+	}
+
+	.fees-explained-container :nth-child(2) {
+		color: var(-----, #17b290);
+		font-size: 20px;
+		font-weight: var(---, 700);
+		text-transform: uppercase;
+		font-family: "Manrope";
+		margin: 0;
+		padding: 0;
+		height: 40px;
+	}
+
+	.fees-explained-container :nth-child(3) {
+		color: var(---text-t3, #5d6667);
+		font-size: var(---14, 14px);
+		font-weight: var(---, 400);
+		line-height: 21px;
+		text-transform: capitalize;
+		width: 80%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.fees-explained-container :nth-child(4) {
+		color: var(-----, #17b290);
+		font-size: 20px;
+		font-weight: var(---, 700);
+		text-transform: uppercase;
+		font-family: "Manrope";
+		margin: 23px 0px;
+		padding: 0;
+		height: 20px;
+	}
+
+	.fees-explained-container :nth-child(5) {
+		color: var(---text-t3, #5d6667);
+		font-size: var(---14, 14px);
+		font-weight: var(---, 400);
+		line-height: 21px;
+		text-transform: capitalize;
+		width: 80%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.reservation-container {
+		max-width: 1248px;
+		margin: 0 auto;
+	}
+
+	.reservation-container div {
+		margin: 40px auto;
+		font-weight: 1000;
+		font-size: 28px;
+		font-family: "Playfair";
+		color: #333;
+	}
+
+	.reservation-list {
+		color: #5d6667;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 21px;
+		padding: 0px 0px 0px 20px;
+	}
+
+	.cancellation-policy-container {
+		max-width: 1248px;
+		margin: 0 auto;
+	}
+
+	.cancellation-policy-container div {
+		margin: 40px auto;
+		font-weight: 1000;
+		font-size: 28px;
+		font-family: "Playfair";
+		color: #333;
+	}
+
+	.cancellation-policy-container p {
+		color: #5d6667;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 21px;
+		margin: 0;
+	}
+
+	.cancellation-policy-container li {
+		list-style: none;
+		color: #5d6667;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 21px;
+	}
+
+	.you-may-also-like-it-container {
+		max-width: 1248px;
+		margin: 0 auto;
+	}
+
+	#you-may-also-like-it-container-heading {
+		margin: 40px auto;
+		font-weight: 1000;
+		font-size: 28px;
+		font-family: "Playfair";
+		color: #333;
+	}
+
+	.cards-main-div {
+		display: flex;
+		justify-content: space-between;
+		gap: 1vw;
+	}
+
+	.card {
+		background: white;
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		width: 32%;
+		height: 435px;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		position: relative;
+	}
+
+	.card-image {
+		height: 300px;
+	}
+
+	.card-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.card-content {
+		padding: 20px;
+		position: absolute;
+		bottom: 0px;
+		background: white;
+		border-radius: 20px;
+	}
+
+	.card-title {
+		font-size: 19px;
+		font-weight: bold;
+		color: #333;
+		margin-bottom: 12px;
+		line-height: 1.3;
+	}
+
+	.card-location {
+		display: flex;
+		align-items: center;
+		margin-bottom: 30px;
+		color: #666;
+		font-size: 14px;
+	}
+
+	.location-icon {
+		width: 16px;
+		height: 16px;
+		margin-right: 8px;
+		fill: #4CAF50;
+	}
+
+	.card-bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 20px;
+	}
+
+	.price-container {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.price-from {
+		font-size: 12px;
+		color: #999;
+		border: 1px solid #ddd;
+		padding: 2px 6px;
+		border-radius: 4px;
+	}
+
+	.price {
+		font-size: 24px;
+		font-weight: bold;
+		color: #333;
+	}
+
+	.currency {
+		font-size: 18px;
+		margin-right: 4px;
+	}
+
+	.detail-button {
+		background-color: #333;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 25px;
+		font-size: 14px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.detail-button::after {
+		content: "→";
+		font-size: 16px;
+	}
+
+	.footer-top {
+		width: 100%;
+		background: #000000;
+		padding: 5vw 0;
+		margin-top: 5vw;
+		align-items: center;
+	}
+
+	.footer-bottom {
+		width: 100%;
+		background: #ffffff;
+		text-align: center;
+		height: 64px;
+		line-height: 64px;
+		text-align: center;
+		color: #8290a5;
+		font-size: 0.640vw;
+	}
+
+	.footer-top-content {
+		max-width: 1350px;
+		margin: 0 auto;
+		display: flex;
+		gap: 2.5vw;
+		justify-content: center;
+	}
+
+	.footer-logo {
+		margin-right: 4.125vw;
+	}
+
+	.footer-logo img {
+		width: 213px;
+		margin-bottom: 0.9375vw;
+	}
+
+	.footer-top-social-links {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer-top-social-links a img {
+		width: 34px;
+		height: 34px;
+	}
+
+	.footer-top-cruises p,
+	.footer-top-policies p,
+	.footer-top-need-help,
+	.footer-top-contactus p {
+		font-weight: 700;
+		color: #b9ebda;
+		line-height: 20px;
+		margin-bottom: 20px;
+		text-transform: uppercase;
+	}
+
+	.footer-top-cruises div,
+	.footer-top-policies div,
+	.footer-top-need-help div {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.footer-top-cruises div a,
+	.footer-top-policies div a,
+	.footer-top-need-help div a {
+		font-style: normal;
+		font-weight: 400;
+		line-height: 29px;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: #b2bebf;
+		font-size: 0.850vw;
+	}
+
+	.footer-form-row {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 10px;
+	}
+
+	.footer-form-row:last-of-type {
+		margin-bottom: 10px;
+	}
+
+	.footer-form-group {
+		flex: 1;
+		position: relative;
+	}
+
+	.footer-form-group.small {
+		flex: 0 0 3.5vw;
+	}
+
+	#footer-title,
+	#footer-countryCode,
+	input[type="text"],
+	input[type="email"],
+	input[type="tel"] {
+		width: 100%;
+		padding: 7px 5px;
+		background-color: transparent;
+		border: 1px solid #dcdfe6;
+		border-radius: 4px;
+		color: #a2a5ac;
+		font-size: 14px;
+		transition: border-color 0.3s ease;
+	}
+
+	#footer-title,
+	#footer-countryCode {
+		width: 5vw;
+	}
+
+	#footer-title:focus,
+	#footer-countryCode:focus,
+	input:focus {
+		outline: none;
+		border-color: #00d4aa;
+	}
+
+	select {
+		cursor: pointer;
+		appearance: none;
+		background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%23fff' d='M6 8L2 4h8z'/></svg>");
+		background-repeat: no-repeat;
+		background-position: right 15px center;
+		background-size: 12px;
+		padding-right: 45px;
+	}
+
+	.footer-subscribe-btn {
+		width: 100%;
+		padding: 5px;
+		background-color: rgb(23, 178, 144);
+		color: #000;
+		border: none;
+		border-radius: 4px;
+		font-size: 12px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.footer-subscribe-btn:hover {
+		background-color: #00b896;
+	}
+
+	.footer-subscribe-btn:active {
+		transform: translateY(1px);
+	}
+
+	.footer-form-group input {
+		width: 8vw;
+	}
+
+	/* Large Laptops (1440px and above) */
+	@media screen and (min-width: 1440px) {
+
+		.top-header,
+		.bottom-header {
+			padding-left: 120px;
+			padding-right: 120px;
+		}
+
+		.tour_booking-conatiner,
+		.container,
+		.fees-explained-container,
+		.reservation-container,
+		.cancellation-policy-container,
+		.you-may-also-like-it-container {
+			max-width: 1400px;
+		}
+
+		.footer-top-content {
+			max-width: 1500px;
+		}
+	}
+
+	/* Standard Laptops (1024px - 1439px) */
+	@media screen and (max-width: 1439px) and (min-width: 1024px) {
+
+		.top-header,
+		.bottom-header {
+			padding-left: 60px;
+			padding-right: 60px;
+		}
+
+		.tour_booking-conatiner,
+		.container,
+		.fees-explained-container,
+		.reservation-container,
+		.cancellation-policy-container,
+		.you-may-also-like-it-container {
+			max-width: 1024px;
+			padding: 0 20px;
+		}
+
+		.footer-top-content {
+			max-width: 1024px;
+			padding: 0 20px;
+		}
+
+		.tour_details {
+			padding: 30px 0;
+		}
+
+		.booking_blk .date-package .input-fields {
+			width: 100%;
+			margin-bottom: 15px;
+		}
+
+		.cards-main-div {
+			gap: 2vw;
+		}
+
+		.card {
+			width: 31%;
+		}
+
+		.footer-bottom {
+			font-size: 12px;
+		}
+
+		.footer-top-cruises div a,
+		.footer-top-policies div a,
+		.footer-top-need-help div a {
+			font-size: 12px;
+		}
+
+		#footer-title,
+		#footer-countryCode {
+			width: 80px;
+		}
+
+		.footer-form-group input {
+			width: 120px;
+		}
+	}
+
+	/* Medium Laptops (768px - 1023px) */
+	@media screen and (max-width: 1023px) and (min-width: 768px) {
+
+		.top-header,
+		.bottom-header {
+			padding-left: 40px;
+			padding-right: 40px;
+		}
+
+		.tour_booking-conatiner,
+		.container,
+		.fees-explained-container,
+		.reservation-container,
+		.cancellation-policy-container,
+		.you-may-also-like-it-container {
+			padding: 0 20px;
+		}
+
+		.footer-top-content {
+			max-width: 768px;
+			padding: 0 20px;
+		}
+
+		.tour_details {
+			flex-direction: column;
+			padding: 20px 0;
+		}
+
+		.tour_details .image_wrapper,
+		.tour_details .details_container {
+			width: 100%;
+		}
+
+		.tour_details .image_wrapper {
+			margin-bottom: 20px;
+		}
+
+		.booking_blk {
+			flex-direction: column;
+		}
+
+		.booking_blk .date-package {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		.booking_blk .date-package .input-fields {
+			width: 48%;
+		}
+
+		.cards-main-div {
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+
+		.card {
+			width: 48%;
+			margin-bottom: 20px;
+		}
+
+		.day-number {
+			margin-right: 40px;
+			min-width: 50px;
+			width: 50px;
+			height: 50px;
+			border-radius: 25px;
+		}
+
+		.day-number .number {
+			font-size: 20px;
+		}
+
+		.day-number .label {
+			font-size: 12px;
+		}
+
+		.itinerary-details {
+			padding: 0 20px 20px 90px;
+		}
+
+		.destination-title {
+			font-size: 18px;
+		}
+
+		.footer-top-content {
+			flex-wrap: wrap;
+			gap: 40px;
+		}
+
+		.footer-logo {
+			margin-right: 0;
+			margin-bottom: 20px;
+		}
+
+		.footer-logo img {
+			width: 150px;
+		}
+
+		.footer-bottom {
+			font-size: 12px;
+		}
+
+		.footer-top-cruises div a,
+		.footer-top-policies div a,
+		.footer-top-need-help div a {
+			font-size: 12px;
+			line-height: 24px;
+		}
+
+		#footer-title,
+		#footer-countryCode {
+			width: 70px;
+		}
+
+		.footer-form-group input {
+			width: 100px;
+		}
+
+		.footer-form-row {
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.footer-form-group.small {
+			flex: 0 0 70px;
+		}
+	}
+
+	/* Small Laptops (481px - 767px) */
+	@media screen and (max-width: 767px) and (min-width: 481px) {
+
+		.top-header,
+		.bottom-header {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+
+		.top-header {
+			height: 40px;
+		}
+
+		.bottom-header {
+			height: 40px;
+			flex-direction: column;
+			padding: 10px 20px;
+		}
+
+		.bottom-header :nth-child(1) img {
+			height: 40px;
+		}
+
+		.bottom-header :nth-child(2) {
+			margin: 10px 0;
+		}
+
+		.bottom-header :nth-child(2) li a {
+			margin: 0 10px;
+			font-size: 12px;
+			line-height: 30px;
+		}
+
+		.tour_booking-conatiner,
+		.container,
+		.fees-explained-container,
+		.reservation-container,
+		.cancellation-policy-container,
+		.you-may-also-like-it-container {
+			max-width: 100%;
+			padding: 0 20px;
+		}
+
+		.tour_details {
+			flex-direction: column;
+			padding: 20px 0;
+		}
+
+		.tour_details .image_wrapper,
+		.tour_details .details_container {
+			width: 100%;
+		}
+
+		.tour_details .details_container h2 {
+			font-size: 24px;
+			line-height: 32px;
+		}
+
+		.booking_blk {
+			flex-direction: column;
+		}
+
+		.booking_blk .date-package {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		.booking_blk .date-package .input-fields {
+			width: 100%;
+			margin-bottom: 15px;
+		}
+
+		.cards-main-div {
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		.card {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		.day-number {
+			margin-right: 20px;
+			min-width: 40px;
+			width: 40px;
+			height: 40px;
+			border-radius: 20px;
+		}
+
+		.day-number .number {
+			font-size: 18px;
+		}
+
+		.day-number .label {
+			font-size: 10px;
+		}
+
+		.itinerary-details {
+			padding: 0 15px 15px 75px;
+		}
+
+		.destination-title {
+			font-size: 16px;
+			line-height: 40px;
+		}
+
+		.header h1 {
+			font-size: 20px;
+		}
+
+		.header-buttons {
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.nav-tabs {
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+
+		.footer-top-content {
+			flex-direction: column;
+			gap: 30px;
+		}
+
+		.footer-logo img {
+			width: 120px;
+		}
+
+		.footer-top-social-links a img {
+			width: 28px;
+			height: 28px;
+		}
+
+		.footer-bottom {
+			font-size: 10px;
+			height: 50px;
+			line-height: 50px;
+		}
+
+		.footer-top-cruises div a,
+		.footer-top-policies div a,
+		.footer-top-need-help div a {
+			font-size: 11px;
+			line-height: 22px;
+		}
+
+		#footer-title,
+		#footer-countryCode {
+			width: 60px;
+		}
+
+		.footer-form-group input {
+			width: 80px;
+		}
+
+		.footer-form-row {
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.footer-form-group.small {
+			flex: 1;
+		}
+
+		.fees-explained-container div,
+		.reservation-container div,
+		.cancellation-policy-container div,
+		#you-may-also-like-it-container-heading {
+			font-size: 22px;
+			margin: 30px auto;
+		}
+
+		.fees-explained-container :nth-child(3),
+		.fees-explained-container :nth-child(5) {
+			width: 100%;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		body {
+			width: 95%;
+			margin: auto;
+		}
+
+		.tour_details {
+			flex-direction: column;
+		}
+
+		.tour_details .image_wrapper {
+			width: 100%;
+		}
+
+		.tour_details .image_wrapper img {
+			max-height: 650px;
+			object-fit: cover;
+			border-radius: 30px;
+		}
+
+		.tour_details .details_container {
+			width: 100%;
+			margin-top: 20px;
+		}
+
+		.tour_details .details_container h2 {
+			font-size: 58px;
+			line-height: 90px;
+		}
+
+		.tour_details .details_container .duration_box h3,
+		.tour_details .details_container .departure_box h3,
+		.tour_details .details_container .include_cities h3 {
+			font-size: 12vw;
+			margin: 18px 0px;
+		}
+
+		.tour_details .details_container .duration_box p,
+		.tour_details .details_container .departure_box p {
+			font-size: 35px
+		}
+
+		.tour_details .details_container .include_cities span {
+			font-size: 35px;
+			line-height: 2em;
+		}
+
+		.booking_blk {
+			flex-direction: column;
+		}
+
+		.booking_blk .date-package {
+			width: 100%;
+		}
+
+		.tour_details .details_container .departure_box .select_box {
+			max-width: 100%;
+			gap: 5vw;
+			justify-content: start;
+		}
+
+		.tour_details .details_container .departure_box .select_box select {
+			font-size: 35px;
+		}
+
+		.tour_details .details_container .departure_box .select-preview {
+			font-size: 35px;
+			word-wrap: nowrap;
+		}
+
+		.include_cities div {
+			font-size: 17vw;
+			font-weight: 100;
+			color: #5d6667
+		}
+
+		.booking_blk .date-package .input-fields input,
+		.booking_blk .date-package .input-fields select {
+			font-size: 35px;
+		}
+
+		.input-fields div {
+			padding: 14px 15px;
+		}
+
+		.booking_blk .date-package .input-fields label {
+			top: -19px;
+			font-size: 25px;
+		}
+
+		.request-quote-btn div {
+			text-align: end;
+			font-size: 35px;
+			padding: 40px 0px;
+		}
+
+		.request-quote-btn button {
+			width: 100%;
+			height: 140px;
+			font-size: 35px
+		}
+
+		.container {
+			padding: 80px 0px;
+		}
+
+		.nav-tabs {
+			flex-wrap: wrap;
+		}
+
+		.nav-tab {
+			font-size: 35px;
+		}
+
+		.header h1 {
+			font-size: 35px;
+		}
+
+		.btn {
+			padding: 23px 20px;
+			font-size: 21px;
+		}
+
+		.destination-title {
+			font-size: 35px;
+		}
+
+		.destination-image {
+			width: 100%;
+			max-width: 480px;
+			height: 300px;
+		}
+
+		.day-number {
+			width: 90px;
+			height: 90px;
+			margin-right: 38px;
+		}
+
+		.destination-description {
+			font-size: 35px;
+		}
+
+		.detail-text {
+			font-size: 35px;
+		}
+
+		.detail-icon {
+			height: 35px;
+			width: 35px;
+		}
+
+		.fees-explained-container div {
+			margin: 57px auto;
+			font-size: 45px;
+		}
+
+		.fees-explained-container :nth-child(2) {
+			font-size: 40px;
+			height: 70px;
+		}
+
+		.fees-explained-container :nth-child(3) {
+			font-size: var(---14, 35px);
+			line-height: 54px;
+		}
+
+		.fees-explained-container :nth-child(4) {
+			font-size: 40px;
+			height: 50px;
+		}
+
+		.fees-explained-container :nth-child(5) {
+			font-size: var(---14, 35px);
+			line-height: 54px;
+		}
+
+		.reservation-container div {
+			margin: 57px auto;
+			font-size: 45px;
+		}
+
+		.reservation-list {
+			font-size: var(---14, 35px);
+			line-height: 54px;
+		}
+
+		.cancellation-policy-container div {
+			margin: 57px auto;
+			font-size: 45px;
+		}
+
+		.cancellation-policy-container p,
+		.cancellation-policy-container li {
+			font-size: var(---14, 35px);
+			line-height: 54px;
+		}
+
+		#you-may-also-like-it-container-heading {
+			margin: 57px auto;
+			font-size: 45px;
+		}
+
+		.cards-main-div {
+			flex-direction: column;
+			gap: 15vw;
+		}
+
+		.card {
+			border-radius: 30px;
+			height: 1077px;
+			width: 100%;
+			align-items: center;
+		}
+
+		.card-image {
+			height: 650px;
+		}
+
+		.card-content {
+			bottom: 0px;
+			border-radius: 76px;
+			padding: 30px;
+		}
+
+		.card-title {
+			font-size: 50px;
+		}
+
+		.card-location {
+			font-size: 35px;
+			margin-bottom: 100px;
+		}
+
+		.price-from {
+			font-size: 25px;
+		}
+
+		.price {
+			font-size: 35px;
+		}
+
+		.detail-button {
+			font-size: 35px;
+		}
+	}
+</style>
+
+<body>
+	<!--<header>
+		<nav>
+			<div class="top-header">
+				<p>
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAASpSURBVHgB7VhdbiNFEK7qiVerrFAc8QLJItrZA6xzgtg38A3inCDLCRKfAPsE6z3BmhPEOQHOGw8Q90KCkHjYQSjix8kUVfPbPR7PDItjHuCTosx09XRXV1d9VWWA//HPgKsETa2b2wCnPKWHiFqGYL3wgWgGQG8eAKY/GWOgroL7Wh8DquEjKFUIAjKK6OTGmGletqTgntZniOoc/gUgBd28ko6Cn2itPVTzbIQMkneyBfczvgEf1gjeqrkAr8danclrPOzfUdDyrb08+6OPdneHCNhOlGsQHX5vrr/xff93WDNkzV/997OPmztfBYg9iNzpaQPwDx6fJvPQORGq98l7g09iVjjuuvFc6w6huohf/dv59W4iU8kDm6idfYKXm1JOIH6HEtURmuJqiWwreWiwIIifCYJa/sYLdTxQcrCXHIltQGwydfiyGQHK/8s/IZj+bMysai3e+xcsYI2tbELDADyEz0jwecV6TEUv+jzxdfKOibcgxu8hek/4kvgKu0UUYoOvcoeKxyM0YGHSUcS2beYiUBR9tRCAOi6Ty2EptR4Zm7RTBSMaoWkqQHwr2aRowZArM2oQbU+QVFcCq0HeoTwTwSARs1H7IfkXQAzhHJZwassdHuS5bY7kr9O5IQ/S4A5gItwkPsdpr68Aj63NBzfX1+dFmz8/OHjLivbS9QjGCwhG4pNy+Geg+oRwmh02pLauHaBLmWRfHwx59BRqgWa38/nhKmlMXXJgDXVWY6v/aNzDKvhQIIzktGVTxG342rtSEEAdBcuiOJ3ElQtCEk/ikyik+TJe4B1fOXOWN76ZfzuFGoivq/+ZfjHh6+zzKkeiSExFV9Gy1JG5EsmVCnLC3kmpgrzBjamnSBV+MN9N+N8kPx5yKapOtCG2oEpBvrrUzAT3lYSd1I3Mgx3eoBN+x3Ue38Lo1pgxVMNk+9ES/6pl/VAnz3fWx0UQitjmIAjLs1i5cA3mUa4nX++1WvMqPn2apTgoyiRLCtqO6leUWIoTPJZEqByW+fRiFZ8KcmVcuYL2aanCesL+tnLChxyxu/LHmn1hK7kN6lXZWhJ8RToI8j6orYXfQRkwOE1plBVish5a0uGePmiy0meR8nRUuhQQl3kY+p+Xs6Jjwcbf6kEwLc/ugmCclz6BwFI4888iEKjUGEHOZRwFOalnQqI5bAhMbX6mkLfagnaA2H5RjKywKPKxBQgpJ1OptB5kwjbZM2lb5vgghkKMJ0JpBBPhJftYJ/yOfe1Trf3fAMaRwpzLnc6QRmVrYaggxc9uLZqnGUsYGChB7GPpHKacL59xTyN/bttKpoqwFTykxuDSa9eVrYAHW6UWzAqBMjqKyieoQFTNR8hX864PWrnwHu4NVEAKAe7AWlKw8utVJgmvfyBta53m6wEWlgXRCRKnHtxvHaRtAW+MsEGs2ju1oHbT0Vp/RagDq+0EOzV+eMG6IThNk908S2MEGwI3VK/srs4uUhweDAhGWf5U55xPJZ1dwSOCufcoV6q9ceUWoiYHL+w8u1kwZ87nTlXt+GDEbVS7yVkn+OYmQktL46s+YGvqBagePfKvrOL3DQgmm/yx6r+FvwBshuZFUeheMwAAAABJRU5ErkJggg=="
+						alt="">
+					<span id="Top-header-contact">626 666 6999</span>
+				</p>
+				<p>
+					<span>REQUEST A QUOTE</span>
+				</p>
+				<p>
+					<span>REQUEST A BROCHURE</span>
+				</p>
+			</div>
+			<div class="bottom-header">
+				<div>
+					<img src="data:image/png;base64,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"
+						alt="">
+				</div>
+				<div>
+					<li><a href="">CRUISE TOURS</a></li>
+					<li><a href="">DESTINATIONS</a></li>
+					<li><a href="">WHY CENTURY</a></li>
+					<li><a href="">SHIPS</a></li>
+					<li><a href="">CENTURY GALLERY</a></li>
+				</div>
+				<div>
+					<button>SIGN IN/REGISTER</button>
+				</div>
+			</div>
+		</nav>
+	</header>-->
+
+	<div class="tour_booking-conatiner">
+		<div class="tour_details">
+			<div class="image_wrapper">
+				<img src="https://test.static.centurycruise.com/grand/202503/2ED12391F40C0E56D6C7163E66A35E0D.jpg_652x652q100.jpg"
+					alt="Tour Image" />
+			</div>
+			<div class="details_container">
+				<h2>Legend of China and Yangtze River Cruise 14-Days Luxury Tour</h2>
+				<div class="tags"></div>
+				<div class="duration_box border_top">
+					<h3>DURATION</h3>
+					<p>13 DAYS | 11 NIGHTS</p>
+				</div>
+				<div class="departure_box border_top">
+					<h3>Departure and Terminal</h3>
+					<div class="select_box">
+						<div>
+							<select class="select_box">
+								<option selected>Los Angeles</option>
+							</select>
+						</div>
+						<div class="line"></div>
+						<div class="select-preview">
+							Los Angeles
+						</div>
+					</div>
+				</div>
+				<div class="include_cities border_top">
+					<h3>Cities Included</h3>
+					<div><span>Beijing</span> - <span>Xi'an</span> - <span>Chongqing</span> - <span>Fengdu</span> -
+						<span>Wuhan</span> - <span>Yichang</span> - <span>Shanghai</span>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="booking_blk">
+			<div class="date-package">
+				<div class="input-fields">
+					<label>Departure Date</label>
+					<div>
+						<input type="date" class="date-picker" name="dob" value="25-09-07" />
+					</div>
+				</div>
+				<div class="input-fields">
+					<label>Package</label>
+					<div>
+						<select aria-placeholder="Package">
+							<option value="standard-package">package</option>
+						</select>
+					</div>
+				</div>
+				<div class="input-fields">
+					<label>Adult</label>
+					<div>
+						<select aria-placeholder="Adult">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+						</select>
+					</div>
+				</div>
+				<div class="input-fields">
+					<label>Child</label>
+					<div>
+						<select aria-placeholder="Child">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="request-quote-btn">
+				<div>FROM <span>$4,088</span> / AVG Per Person</div>
+				<button type="button">
+					REQUEST A QUOTE
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<nav class="nav-tabs">
+			<a href="#" class="nav-tab active">ITINERARY</a>
+			<a href="#" class="nav-tab">FEES EXPLAINED</a>
+			<a href="#" class="nav-tab">RESERVATION INFO</a>
+			<a href="#" class="nav-tab">CANCELLATION POLICY</a>
+		</nav>
+
+		<div class="header">
+			<h1>ITINERARY</h1>
+			<div class="header-buttons">
+				<a href="#" class="btn btn-primary">DOWNLOAD AN ITINERARY</a>
+				<a href="#" class="btn btn-secondary">HIDE DETAILS</a>
+			</div>
+		</div>
+
+		<div class="itinerary-item">
+			<div class="itinerary-header" onclick="toggleDetails()">
+				<div class="day-number">
+					<span class="number">1</span>
+					<span class="label">DAY</span>
+				</div>
+				<div class="destination-info">
+					<h2 class="destination-title">Hometown - Beijing</h2>
+				</div>
+				<div class="chevron" id="chevron">⌄</div>
+			</div>
+
+			<div class="itinerary-details" id="details">
+				<img src="https://test.static.centurycruise.com/grand/202503/797931FD0B9A1F6AFAA2705B548D77C0.jpg_1080x1080q100.jpg"
+					alt="Airplane in sky" class="destination-image">
+
+				<p class="destination-description">
+					Depart from your hometown to Beijing and spend the night on international flights.
+				</p>
+
+				<div class="detail-item">
+					<svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+						</path>
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+					</svg>
+					<span class="detail-text"><span class="detail-label">Via city:</span> Beijing</span>
+				</div>
+
+				<div class="detail-item">
+					<svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 4l2 2 4-4"></path>
+					</svg>
+					<span class="detail-text"><span class="detail-label">Check in:</span> In flight</span>
+				</div>
+
+				<div class="detail-item">
+					<svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+					</svg>
+					<span class="detail-text"><span class="detail-label">Meals:</span> Breakfast: None / Lunch: None /
+						Dinner: None</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="fees-explained-container">
+		<div>FEES EXPLAINED</div>
+		<div>PRICE INCLUDES</div>
+		<p>- International and domestic flight tickets <br>- 12-night stay in a premium hotel and cruise <br>- All air
+			taxes and fuel surcharges <br>- Round-trip bus transportation <br>- Access and entrance fees, as shown in
+			the itinerary. <br>- Professional English Guide <br>- Meals shown in the itinerary.</p>
+
+		<div>PRICE DOESNOT INCLUDE</div>
+		<p>- International and domestic flight tickets <br>- 12-night stay in a premium hotel and cruise <br>- All air
+			taxes and fuel surcharges <br>- Round-trip bus transportation <br>- Access and entrance fees, as shown in
+			the itinerary. <br>- Professional English Guide <br>- Meals shown in the itinerary.</p>
+	</section>
+
+	<section class="reservation-container">
+		<div>RESERVATION INFO</div>
+		<ol class="reservation-list" type="1">
+			<li>Ticket prices for certain scenic spots will be adjusted due to the season and the final price may vary
+				based on the price of the day.</li>
+			<li>If you need to temporarily change the pick-up location before departure, make sure to notify us 3 days
+				before departure so that we can coordinate the arrangements; a surcharge will be charged to the trip.
+			</li>
+			<li>Due to departure dates, traffic conditions, hotels, natural disasters and other force majeure factors,
+				Great Century Tour reserves the ultimate right to adjust the itinerary and hotel.</li>
+			<li>The hotel's boarding time starts from 3:00 pm and the rooms are all &quot;non-smoking&quot; rooms.
+				Smoking in the room will result in a fine of more than $300.</li>
+		</ol>
+	</section>
+
+	<section class="cancellation-policy-container">
+		<div>CANCELLATION POLICY</div>
+		<p>
+			Cancellation is only possible by notifying the Century Tour after a trip booking. If cancelled, the
+			following conditions apply: All cancellations shall be made upon receipt of written notice of the consumer
+			cancellation. Additional fees may apply if the consumer intends to resume travel after they or their
+			designated representative cancels the trip. These fees include but are not limited to air ticket booking,
+			hotel booking, domestic transportation, meals, parades, attractive tickets, management fees, and other fees
+			and fees. If one of the two cancels the trip, the other passenger will be charged a single occupancy
+			surcharge. Please note that any room type change will incur a change fee. The cancellation fee calculated
+			based on the cancellation date is as follows:
+		</p>
+		<li>90 days or more: Non-refundable at least 50% travel prepayment;</li>
+		<li>70% of the cost of travel for 89-60 days;</li>
+		<li>80% of the cost of travel for 59-45 days;</li>
+		<li>90% of the cost of travel for 44-30 days;</li>
+		<li>100% of travel expenses that do not exist for less than 30 days: 100% of travel expenses</li>
+		<li>If you book some optional tours on your trip, 48 hours before the start of the trip, or if there aren't
+			enough people on the optional tour, most optional tours will receive a full refund. Century Cruises will not
+			be liable for any loss of any related travel insurance purchased by the consumer or travel arising from
+			cancellation of the travel.</li>
+	</section>
+
+	<section class="you-may-also-like-it-container">
+		<div id="you-may-also-like-it-container-heading">YOU MAY ALSO LIKE IT</div>
+		<div class="cards-main-div">
+			<div class="card">
+				<div class="card-image">
+					<img src="https://test.static.centurycruise.com/grand/202503/94F356DCE3124E42B67A601F5F738E92.jpg_978x978q100.jpg"
+						alt="Yangtze River Cruise">
+				</div>
+				<div class="card-content">
+					<div class="card-title">DREAM OF CHINA & YANGTZE RIVER CRUISE 19-DAYS LUXURY TOUR</div>
+					<div class="card-location">
+						<svg class="location-icon" viewBox="0 0 24 24">
+							<path
+								d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+						</svg>
+						Beijing - Xi'an - Chongqing - Fengdu - Wuhan - Yic...
+					</div>
+					<div class="card-bottom">
+						<div class="price-container">
+							<span class="price-from">FROM</span>
+							<div class="price">
+								<span class="currency">$</span>4,888
+							</div>
+						</div>
+						<button class="detail-button">DETAIL</button>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-image">
+					<img src="https://test.static.centurycruise.com/grand/202503/0E0BDCBD24019FFEAD2AD7AA2CBB93A8.jpeg_978x978q100.jpg"
+						alt="Yangtze River Cruise">
+				</div>
+				<div class="card-content">
+					<div class="card-title">DREAM OF CHINA & YANGTZE RIVER CRUISE 19-DAYS LUXURY TOUR</div>
+					<div class="card-location">
+						<svg class="location-icon" viewBox="0 0 24 24">
+							<path
+								d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+						</svg>
+						Beijing - Xi'an - Chongqing - Fengdu - Wuhan - Yic...
+					</div>
+					<div class="card-bottom">
+						<div class="price-container">
+							<span class="price-from">FROM</span>
+							<div class="price">
+								<span class="currency">$</span>4,888
+							</div>
+						</div>
+						<button class="detail-button">DETAIL</button>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-image">
+					<img src="https://test.static.centurycruise.com/grand/202503/7830A03FA29658D9D95DD76F1A55F88D.jpeg_978x978q100.jpg"
+						alt="Yangtze River Cruise">
+				</div>
+				<div class="card-content">
+					<div class="card-title">DREAM OF CHINA & YANGTZE RIVER CRUISE 19-DAYS LUXURY TOUR</div>
+					<div class="card-location">
+						<svg class="location-icon" viewBox="0 0 24 24">
+							<path
+								d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+						</svg>
+						Beijing - Xi'an - Chongqing - Fengdu - Wuhan - Yic...
+					</div>
+					<div class="card-bottom">
+						<div class="price-container">
+							<span class="price-from">FROM</span>
+							<div class="price">
+								<span class="currency">$</span>4,888
+							</div>
+						</div>
+						<button class="detail-button">DETAIL</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--<footer class="footer-container">
+		<div class="footer-top">
+			<div class="footer-top-content">
+				<div class="footer-logo">
+					<img src="data:image/png;base64,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"
+						alt="">
+					<div class="footer-top-social-links">
+						<a href="">
+							<img src="https://test.centurycruise.com/assets/img/f1.edf80751.svg" alt="">
+						</a>
+						<a href="">
+							<img src="https://test.centurycruise.com/assets/img/f2.ccc1aaf0.svg" alt="">
+						</a>
+						<a href="">
+							<img src="https://test.centurycruise.com/assets/img/f3.feeb2bbf.svg" alt="">
+						</a>
+						<a href="">
+							<img src="https://test.centurycruise.com/assets/img/f4.72aed1f0.svg" alt="">
+						</a>
+						<a href="">
+							<img src="https://test.centurycruise.com/assets/img/f5.98d635c8.svg" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="footer-top-cruises">
+					<p>CRUSIES</p>
+					<div>
+						<a href="">ABOUT US</a>
+						<a href="">BLOG</a>
+						<a href="">CENTURY GALLERY</a>
+					</div>
+				</div>
+				<div class="footer-top-policies">
+					<p>POLICIES</p>
+					<div>
+						<a href="">Privacy Policy</a>
+						<a href="">COOKIE POLICY</a>
+						<a href="">Terms & Conditions</a>
+					</div>
+				</div>
+				<div class="footer-top-need-help">
+					<p>NEED HELP</p>
+					<div>
+						<a href="">Contact Us</a>
+						<a href="">FAQ</a>
+					</div>
+				</div>
+				<div class="footer-top-contactus">
+					<p>FOLLOW FOR NEWS & Latest Discounts</p>
+					<form>
+						<div class="footer-form-row">
+							<div class="footer-form-group small">
+								<select id="footer-title" name="title">
+									<option value="">Title</option>
+									<option value="mr">Mr.</option>
+									<option value="mrs">Mrs.</option>
+									<option value="ms">Ms.</option>
+									<option value="dr">Dr.</option>
+								</select>
+							</div>
+							<div class="footer-form-group">
+								<input type="text" id="footer-firstName" name="firstName" placeholder="First Name"
+									required>
+							</div>
+							<div class="footer-form-group">
+								<input type="text" id="footer-lastName" name="lastName" placeholder="Last Name"
+									required>
+							</div>
+						</div>
+						<div class="footer-form-row">
+							<div class="footer-form-group">
+								<input type="email" id="footer-email" name="email" placeholder="Email" required>
+							</div>
+							<div class="footer-form-group small">
+								<select id="footer-countryCode" name="countryCode">
+									<option value="+1">+1</option>
+									<option value="+44">+44</option>
+									<option value="+91">+91</option>
+									<option value="+33">+33</option>
+									<option value="+49">+49</option>
+									<option value="+81">+81</option>
+									<option value="+86">+86</option>
+								</select>
+							</div>
+							<div class="footer-form-group">
+								<input type="tel" id="footer-phone" name="phone" placeholder="Phone Number" required>
+							</div>
+						</div>
+						<button type="submit" class="footer-subscribe-btn">SUBSCRIBE</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">© Century Cruises, 1994-2025. All Rights Reserved</div>
+	</footer>-->
+</body>
+
+<script>
+	function toggleDetails() {
+		const details = document.getElementById('details');
+		const chevron = document.getElementById('chevron');
+
+		if (details.style.display === 'none') {
+			details.style.display = 'block';
+			chevron.classList.add('expanded');
+		} else {
+			details.style.display = 'none';
+			chevron.classList.remove('expanded');
+		}
+	}
+</script>
